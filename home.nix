@@ -2,8 +2,12 @@
 {
   home = {
     packages = with pkgs; [
-      hello
+      bat
       home-manager
+      gnused
+      neovim
+      ripgrep
+      tree
     ];
 
     username = "aymeeko";
