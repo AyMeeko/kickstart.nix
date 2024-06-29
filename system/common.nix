@@ -1,19 +1,13 @@
 { lib, pkgs, ... }:
-let
-  username = "aymeeko";
-in
 {
   home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
-
     packages = with pkgs; [
       bat
+      fzf
       home-manager
-      gnused
       neovim
       ripgrep
-      tree
+      tmux
     ];
 
     stateVersion = "23.11";
