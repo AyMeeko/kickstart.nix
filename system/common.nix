@@ -5,9 +5,6 @@
       bat
       fd
       fzf
-      fzf-zsh
-      gcc
-      gnumake42
       home-manager
       ripgrep
       tmux
