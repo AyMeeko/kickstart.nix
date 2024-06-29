@@ -1,6 +1,12 @@
 { lib, pkgs, ... }:
+let
+  username = "aymeeko";
+in
 {
   home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+
     packages = with pkgs; [
       bat
       home-manager
@@ -9,9 +15,6 @@
       ripgrep
       tree
     ];
-
-    username = "aymeeko";
-    homeDirectory = "/home/aymeeko";
 
     stateVersion = "23.11";
   };
