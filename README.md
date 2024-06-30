@@ -17,3 +17,11 @@ For some reason, you have to cd into
 .local/share/nvim/lazy/telescope-fzf-native.nvim
 ```
 and run `make`
+
+# Templates to start a new project
+https://github.com/NixOS/templates
+
+e.g.
+```
+$ nix flake init --template templates#python
+```

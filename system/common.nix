@@ -7,6 +7,7 @@ in
   home = {
     packages = with pkgs; [
       bat
+      direnv
       fd
       fzf
       home-manager
@@ -54,7 +55,10 @@ in
     };
     oh-my-zsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = [
+        "git"
+        "direnv"
+      ];
       custom = "$HOME/.config/omz-custom";
       theme = "my-theme";
     };
