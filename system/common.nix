@@ -46,23 +46,6 @@ in
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    extraPackages = [
-      # Included to build telescope-fzf-native.nvim
-      pkgs.cmake
-      # Included for LuaSnip
-      pkgs.luajitPackages.jsregexp
-    ];
-    withNodeJs = true;
-    withPython3 = true;
-    withRuby = true;
-    vimdiffAlias = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -102,5 +85,29 @@ in
     enableBashIntegration = true;
     extraConfig = builtins.readFile ../config/wezterm.lua;
     package = (config.lib.nixGL.wrap pkgs.wezterm);
+  };
+
+  programs.tmux = {
+    enable = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    terminal = "xterm-256color";
+    extraConfig = builtins.readFile ../config/tmux.conf;
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    extraPackages = [
+      # Included to build telescope-fzf-native.nvim
+      pkgs.cmake
+      # Included for LuaSnip
+      pkgs.luajitPackages.jsregexp
+    ];
+    withNodeJs = true;
+    withPython3 = true;
+    withRuby = true;
+    vimdiffAlias = true;
+    viAlias = true;
+    vimAlias = true;
   };
 }
