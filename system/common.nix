@@ -1,13 +1,20 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
+let
+  nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
+in
 {
+  fonts.fontconfig.enable = true;
   home = {
     packages = with pkgs; [
       bat
       fd
       fzf
       home-manager
+      nixGLIntel
       ripgrep
       tmux
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      (config.lib.nixGL.wrap wezterm)
     ];
 
     stateVersion = "23.11";
@@ -17,6 +24,16 @@
       recursive = true;
     };
   };
+
+  imports = [
+# todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
+    (builtins.fetchurl {
+     url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
+     sha256 = "11f3pnkb1a4glghpgqhrd2mv02x8rraqa798hvi7zipj1874zjl2";
+     })
+  ];
+
+  nixGL.prefix = "${nixGLIntel}/bin/nixGLIntel";
 
   programs.zsh = {
     enable = true;
@@ -32,7 +49,6 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    #extraConfig = ":luafile ~/.config/nvim/init.lua";
     extraPackages = [
       # Included to build telescope-fzf-native.nvim
       pkgs.cmake
@@ -78,5 +94,13 @@
       gdc = "git diff --cached";
       gd = "git diff";
     };
+  };
+
+  programs.wezterm = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    extraConfig = builtins.readFile ../config/wezterm.lua;
+    package = (config.lib.nixGL.wrap pkgs.wezterm);
   };
 }
