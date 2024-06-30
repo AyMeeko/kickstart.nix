@@ -58,6 +58,7 @@ in
       plugins = [
         "git"
         "direnv"
+        "z"
       ];
       custom = "$HOME/.config/omz-custom";
       theme = "my-theme";

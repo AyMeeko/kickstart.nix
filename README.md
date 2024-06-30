@@ -1,3 +1,9 @@
+## Setup
+- ensure `~/.config/nix/nix.conf` exists with `experimental-features = nix-command flakes` in it.
+- install nix
+- run `nix-shell -p neovim home-manager`
+- download kickstart.nix
+- run `make`
 ## simple-homemanager
 https://github.com/Evertras/simple-homemanager/tree/main
 
