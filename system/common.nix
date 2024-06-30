@@ -23,6 +23,10 @@ in
       source = ../config/nvim;
       recursive = true;
     };
+
+    file."./.config/omz-custom/my-theme.zsh-theme" = {
+      source = ../config/my-zsh-theme;
+    };
   };
 
   imports = [
@@ -46,6 +50,13 @@ in
       "gdc" = "git diff --cached";
       "gs" = "git status";
       "gc" = "git commit";
+      "ga" = "git add";
+    };
+    oh-my-zsh = {
+      enable = true;
+      plugins = ["git"];
+      custom = "$HOME/.config/omz-custom";
+      theme = "my-theme";
     };
   };
 
@@ -106,11 +117,5 @@ in
     vimdiffAlias = true;
     viAlias = true;
     vimAlias = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = pkgs.lib.importTOML ../config/starship.toml;
   };
 }
