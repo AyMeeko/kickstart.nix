@@ -5,7 +5,7 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Catppuccin Macchiato'
-config.font_size = 13.0
+config.font_size = 12.0
 config.font = wezterm.font {
   family = 'MonoLisa Nerd Font Mono',
   harfbuzz_features = { 'liga=0' },
