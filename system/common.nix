@@ -90,6 +90,8 @@ in
 
   programs.git = {
     enable = true;
+    userEmail = "87551537+AyMeeko@users.noreply.github.com";
+    userName = "AyMeeko";
   };
 
   programs.wezterm = {
