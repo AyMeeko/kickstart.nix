@@ -17,9 +17,10 @@
         let pkgs = import nixpkgs { inherit system; };
         in {
           default = pkgs.mkShell {
-            buildInputs = [
-              pkgs.python39
-              pkgs.python39Packages.pip
+            buildInputs = with pkgs; [
+              python39
+              python39Packages.pip
+              python39Packages.python-lsp-server
             ];
           };
         });
