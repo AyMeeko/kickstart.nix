@@ -31,3 +31,19 @@ e.g.
 ```
 $ nix flake init --template templates#python
 ```
+
+## Kmonad
+```
+sudo groupadd uinput
+sudo usermod -aG input aymeeko
+sudo usermod -aG uinput aymeeko
+sudo vi /lib/udev/rules.d/kmonad.rules
+
+paste in:
+KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+
+systemctl --user daemon-reload
+systemctl --user enable kmonad
+systemctl --user start kmonad
+```
+
