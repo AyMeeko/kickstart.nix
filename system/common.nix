@@ -47,11 +47,14 @@ in
       enable = true;
     };
     shellAliases = {
-      "gd" = "git diff";
-      "gdc" = "git diff --cached";
+      "gd" = "git diff --color";
+      "gdc" = "git diff --cached --color";
       "gs" = "git status";
       "gc" = "git commit";
       "ga" = "git add";
+      "gpr" = "git pull --rebase";
+      "ls" = "ls -G";
+      "s" = "rg -S";
     };
     oh-my-zsh = {
       enable = true;
