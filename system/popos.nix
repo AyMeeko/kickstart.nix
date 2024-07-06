@@ -4,6 +4,7 @@
     username = "aymeeko";
     homeDirectory = "/home/aymeeko";
     packages = with pkgs; [
+      copyq
       gnused
       haskellPackages.kmonad
       xclip
