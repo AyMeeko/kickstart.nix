@@ -51,6 +51,8 @@ return {
         }
       })
 
+      require("lspconfig").ruff.setup({})
+
       require("lspconfig").gopls.setup({
         cmd = {"gopls"},
         filetypes = { "go", "gomod", "gowork", "gotmpl" },
