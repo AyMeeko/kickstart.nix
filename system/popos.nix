@@ -7,7 +7,7 @@
       copyq
       gnused
       haskellPackages.kmonad
-      xclip
+      xsel
     ];
 
     file."./.config/kmonad.kbd" = {

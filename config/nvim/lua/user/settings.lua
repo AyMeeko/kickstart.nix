@@ -1,6 +1,18 @@
 vim.opt.hlsearch = true -- Set highlight on search
 vim.opt.ignorecase = true -- Case-insensitive searching
 vim.opt.smartcase = true -- UNLESS \C or capital in search
+vim.g.clipboard = {
+    name = "xsel",
+    copy = {
+        ["+"] = "xsel -b",
+        ["*"] = "xsel -b"
+    },
+    paste = {
+        ["+"] = "xsel -ob",
+        ["*"] = "xsel -ob"
+    },
+    cache_enabled = true,
+}
 
 -- Tabs
 vim.opt.expandtab = true
