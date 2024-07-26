@@ -35,6 +35,14 @@ return {
         require("plugins.lsp.callbacks")
       end)
 
+      --require("lspconfig").basedpyright.setup({
+        --settings = {
+          --basedpyright = {
+            --typeCheckingMode = "standard",
+          --},
+        --},
+      --})
+
       require("lspconfig").pylsp.setup({
         settings = {
           pylsp = {

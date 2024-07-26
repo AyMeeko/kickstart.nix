@@ -23,7 +23,7 @@ in
         Description = "Run Kmonad";
       };
       Service = {
-        ExecStart = "${pkgs.haskellPackages.kmonad}/bin/kmonad ${cfg.configFile}";
+        ExecStart = "${pkgs.kmonad}/bin/kmonad ${cfg.configFile}";
       };
       Install = {
         WantedBy = [ "default.target" ];

@@ -6,7 +6,7 @@
     packages = with pkgs; [
       copyq
       gnused
-      haskellPackages.kmonad
+      kmonad
       xsel
     ];
 

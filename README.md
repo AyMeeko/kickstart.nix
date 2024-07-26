@@ -44,6 +44,6 @@ KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
 
 systemctl --user daemon-reload
 systemctl --user enable kmonad
-systemctl --user start kmonad
+systemctl --user start kmonad.service
 ```
 

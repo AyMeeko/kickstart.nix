@@ -16,6 +16,18 @@ in
       tmux
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       (config.lib.nixGL.wrap wezterm)
+
+      # typescript / javascript
+      nodejs
+      nodePackages.typescript
+      nodePackages.typescript-language-server
+      yarn
+
+      # python
+      ruff
+      python311
+      python311Packages.pip
+      python311Packages.python-lsp-server
     ];
 
     stateVersion = "23.11";
@@ -34,7 +46,7 @@ in
 # todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
     (builtins.fetchurl {
      url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
-     sha256 = "11f3pnkb1a4glghpgqhrd2mv02x8rraqa798hvi7zipj1874zjl2";
+     sha256 = "0g5yk54766vrmxz26l3j9qnkjifjis3z2izgpsfnczhw243dmxz9";
      })
   ];
 
@@ -43,6 +55,8 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    initExtra = ''
+    '';
     syntaxHighlighting = {
       enable = true;
     };
