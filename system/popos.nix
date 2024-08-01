@@ -4,6 +4,7 @@
     username = "aymeeko";
     homeDirectory = "/home/aymeeko";
     packages = with pkgs; [
+      bruno
       copyq
       gnused
       kmonad

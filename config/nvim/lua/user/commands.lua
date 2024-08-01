@@ -25,5 +25,8 @@ vim.api.nvim_create_user_command("Qa", "qa", {})
 vim.api.nvim_create_user_command("Q", "q", {})
 
 -- Format JSON*
-vim.api.nvim_create_user_command("FormatJson", "%!jq .", {})
-vim.keymap.set("n", "<leader>fj", vim.cmd.FormatJson)
+-- the hotkey doesnt work and i dont know why
+vim.api.nvim_create_user_command("FormatJson", function()
+    vim.cmd([[%!jq '.']])
+end, {})
+vim.keymap.set("n", "<leader>fj", ":FormatJson<CR>", { noremap = true, silent = true })
