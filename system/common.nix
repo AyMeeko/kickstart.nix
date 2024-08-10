@@ -11,11 +11,14 @@ in
       fd
       fzf
       home-manager
+      neovim
       nixGLIntel
       ripgrep
       tmux
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       (config.lib.nixGL.wrap wezterm)
+
+      go
 
       # typescript / javascript
       nodejs
@@ -31,11 +34,6 @@ in
     ];
 
     stateVersion = "23.11";
-
-    file."./.config/nvim/" = {
-      source = ../config/nvim;
-      recursive = true;
-    };
 
     file."./.config/omz-custom/my-theme.zsh-theme" = {
       source = ../config/my-zsh-theme;
@@ -69,6 +67,7 @@ in
       "gpr" = "git pull --rebase";
       "ls" = "ls -G";
       "s" = "rg -S";
+      "vim" = "nvim";
     };
     oh-my-zsh = {
       enable = true;
@@ -124,22 +123,5 @@ in
     shell = "${pkgs.zsh}/bin/zsh";
     terminal = "xterm-256color";
     extraConfig = builtins.readFile ../config/tmux.conf;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    extraPackages = [
-      # Included to build telescope-fzf-native.nvim
-      pkgs.cmake
-      # Included for LuaSnip
-      pkgs.luajitPackages.jsregexp
-    ];
-    withNodeJs = true;
-    withPython3 = true;
-    withRuby = true;
-    vimdiffAlias = true;
-    viAlias = true;
-    vimAlias = true;
   };
 }
