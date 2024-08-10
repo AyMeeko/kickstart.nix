@@ -3,9 +3,11 @@ let
   nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
 in
 {
+  nixpkgs.config.allowUnfree = true;
   fonts.fontconfig.enable = true;
   home = {
     packages = with pkgs; [
+      _1password-gui
       bat
       direnv
       fd
