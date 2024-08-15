@@ -5,11 +5,15 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Catppuccin Macchiato'
-config.font_size = 11.0
-config.font = wezterm.font {
-  family = 'MonoLisa Nerd Font Mono',
-  harfbuzz_features = { 'liga=0' },
-}
+config.font_size = 16.0
+config.font = wezterm.font_with_fallback({
+  "MonoLisa",
+  "Symbols Nerd Font Mono"
+})
+-- config.font = wezterm.font {
+--   family = 'MonoLisa',
+--   harfbuzz_features = { 'liga=0' },
+-- }
 config.freetype_load_target = 'Normal'
 config.freetype_render_target = 'Normal'
 config.line_height = 1.4

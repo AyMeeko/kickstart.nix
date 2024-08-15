@@ -21,6 +21,16 @@
   }@inputs:
     {
       homeConfigurations = {
+        wsl = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./system/wsl.nix
+            ./system/common.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
         popos = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [

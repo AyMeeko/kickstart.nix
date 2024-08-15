@@ -47,3 +47,18 @@ systemctl --user enable kmonad
 systemctl --user start kmonad.service
 ```
 
+
+## WSL
+
+Custom font support:
+```
+$ mkdir ~/.fonts
+$ cp [fonts] ~/.fonts/
+```
+
+Install font utilities:
+```
+$ sudo apt update
+$ sudo apt install fontconfig
+$ fc-cache -f -v
+```
