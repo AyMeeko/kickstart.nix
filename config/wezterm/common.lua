@@ -1,3 +1,4 @@
+local wezterm = require("wezterm")
 local config = {}
 
 if wezterm.config_builder then
@@ -5,18 +6,16 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Catppuccin Macchiato'
-config.font_size = 16.0
 config.font = wezterm.font_with_fallback({
-  "MonoLisa",
+  {
+    family = "Cascadia Code",
+    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+  },
   "Symbols Nerd Font Mono"
 })
--- config.font = wezterm.font {
---   family = 'MonoLisa',
---   harfbuzz_features = { 'liga=0' },
--- }
 config.freetype_load_target = 'Normal'
 config.freetype_render_target = 'Normal'
-config.line_height = 1.4
+config.line_height = 1.2
 config.hide_tab_bar_if_only_one_tab = true
 config.term = "xterm-256color"
 config.automatically_reload_config = true

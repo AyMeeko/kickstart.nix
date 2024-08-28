@@ -40,6 +40,10 @@ in
     file."./.config/omz-custom/my-theme.zsh-theme" = {
       source = ../config/my-zsh-theme;
     };
+
+    file."./.config/wezterm/common.lua" = {
+      source = ../config/wezterm/common.lua;
+    };
   };
 
   imports = [
@@ -110,14 +114,6 @@ in
     enable = true;
     userEmail = "87551537+AyMeeko@users.noreply.github.com";
     userName = "AyMeeko";
-  };
-
-  programs.wezterm = {
-    enable = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
-    extraConfig = builtins.readFile ../config/wezterm.lua;
-    package = (config.lib.nixGL.wrap pkgs.wezterm);
   };
 
   programs.tmux = {

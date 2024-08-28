@@ -20,4 +20,12 @@
     enable = true;
     configFile = ../config/kmonad.kbd;
   };
+
+  programs.wezterm = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    extraConfig = builtins.readFile ../config/wezterm/popos.lua;
+    package = (config.lib.nixGL.wrap pkgs.wezterm);
+  };
 }
