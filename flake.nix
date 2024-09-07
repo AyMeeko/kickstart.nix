@@ -35,7 +35,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./system/popos.nix
-            ./modules/knomad.nix
+            ./modules/kmonad.nix
             ./system/common.nix
           ];
           extraSpecialArgs = {
