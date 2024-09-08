@@ -4,6 +4,7 @@
     username = "aymeeko";
     homeDirectory = "/home/aymeeko";
     packages = with pkgs; [
+      _1password-gui
       bruno
       copyq
       gnused

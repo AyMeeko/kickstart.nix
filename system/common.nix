@@ -7,7 +7,6 @@ in
   fonts.fontconfig.enable = true;
   home = {
     packages = with pkgs; [
-      _1password-gui
       bat
       direnv
       fd
