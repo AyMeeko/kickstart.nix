@@ -103,9 +103,9 @@ in
       prompt = "#c6a0f6";
       "hl+" = "#ed8796";
     };
+    defaultCommand = "rg -S";
     defaultOptions = [
-      "--bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
-      "--preview 'cat {}'"
+      "--preview 'bat --style=numbers --color=always {}'"
     ];
   };
 
