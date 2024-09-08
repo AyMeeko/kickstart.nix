@@ -58,11 +58,10 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     initExtra = ''
     '';
-    syntaxHighlighting = {
-      enable = true;
-    };
     shellAliases = {
       "gd" = "git diff --color";
       "gdc" = "git diff --cached --color";
@@ -79,7 +78,6 @@ in
       plugins = [
         "git"
         "direnv"
-        "z"
       ];
       custom = "$HOME/.config/omz-custom";
       theme = "my-theme";
