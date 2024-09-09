@@ -18,6 +18,18 @@ in {
     ripgrep
     tree
     wget
+
+    # typescript / javascript
+    nodejs
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    yarn
+
+    # python
+    ruff
+    python311
+    python311Packages.pip
+    python311Packages.python-lsp-server
   ];
 
   home = {
