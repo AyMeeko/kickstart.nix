@@ -60,6 +60,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
               ./system/popos.nix
+              ./module/kmonad.nix
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {

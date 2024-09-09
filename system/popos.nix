@@ -7,12 +7,18 @@ in
     username = username;
     homeDirectory = "/home/${username}";
     packages = with pkgs; [
+      _1password-gui
       bruno
       copyq
       gnused
       xsel
+      kmonad
       (config.lib.nixGL.wrap wezterm)
     ];
+
+    file."./.config/kmonad.kbd" = {
+      source = ../config/kmonad.kbd;
+    };
   };
 
   imports = [
@@ -28,6 +34,11 @@ in
   programs.git = {
     userEmail = "87551537+AyMeeko@users.noreply.github.com";
     userName = "AyMeeko";
+  };
+
+  services.kmonad = {
+    enable = true;
+    configFile = ../config/kmonad.kbd;
   };
 
   programs.wezterm = {

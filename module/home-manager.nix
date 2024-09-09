@@ -11,10 +11,11 @@ in {
     bat
     delta
     fd
-    premium-fonts
     fzf
-    jq
+    home-manager
     gnused
+    jq
+    premium-fonts
     ripgrep
     tree
     wget
@@ -35,6 +36,10 @@ in {
   home = {
     file."./.config/wezterm/common.lua" = {
       source = ../config/wezterm/common.lua;
+    };
+
+    file."./.config/omz-custom/my-theme.zsh-theme" = {
+      source = ../config/my-zsh-theme;
     };
   };
 
@@ -151,7 +156,12 @@ in {
     };
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      plugins = [
+        "git"
+        "direnv"
+      ];
+      custom = "$HOME/.config/omz-custom";
+      theme = "my-theme";
     };
   };
 }
