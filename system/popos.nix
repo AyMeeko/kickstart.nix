@@ -1,9 +1,11 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, username, ... }:
 let
   nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
 in
 {
   home = {
+    username = username;
+    homeDirectory = "/home/${username}";
     packages = with pkgs; [
       bruno
       copyq

@@ -39,7 +39,7 @@
               inherit system;
               specialArgs = { inherit inputs username; };
               modules = [
-                ./module/configuration.nix
+                ./module/darwin-configuration.nix
                 home-manager.darwinModules.home-manager
                 {
                   home-manager.useGlobalPkgs = true;
@@ -64,6 +64,7 @@
             ];
             extraSpecialArgs = {
               inherit inputs;
+              username = "aymeeko";
             };
           };
         };
