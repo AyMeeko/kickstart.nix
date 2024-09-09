@@ -1,25 +1,31 @@
-{ config, lib, pkgs, inputs, ... }:
+{ inputs, config, pkgs, ... }:
+let
+  nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
+in
 {
   home = {
-    username = "aymeeko";
-    homeDirectory = "/home/aymeeko";
     packages = with pkgs; [
-      _1password-gui
       bruno
       copyq
       gnused
-      kmonad
       xsel
+      (config.lib.nixGL.wrap wezterm)
     ];
-
-    file."./.config/kmonad.kbd" = {
-      source = ../config/kmonad.kbd;
-    };
   };
 
-  services.kmonad = {
-    enable = true;
-    configFile = ../config/kmonad.kbd;
+  imports = [
+    # todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
+    (builtins.fetchurl {
+     url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
+     sha256 = "0g5yk54766vrmxz26l3j9qnkjifjis3z2izgpsfnczhw243dmxz9";
+     })
+  ];
+
+  nixGL.prefix = "${nixGLIntel}/bin/nixGLIntel";
+
+  programs.git = {
+    userEmail = "87551537+AyMeeko@users.noreply.github.com";
+    userName = "AyMeeko";
   };
 
   programs.wezterm = {
