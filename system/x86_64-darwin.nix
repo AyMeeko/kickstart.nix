@@ -2,6 +2,7 @@
 {
   home = {
     packages = with pkgs; [
+      wezterm
     ];
 
     file."./.config/wezterm/wezterm.lua" = {
