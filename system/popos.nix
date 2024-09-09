@@ -11,6 +11,7 @@ in
       bruno
       copyq
       gnused
+      home-manager
       xsel
       kmonad
       (config.lib.nixGL.wrap wezterm)

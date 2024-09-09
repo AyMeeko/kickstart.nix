@@ -12,7 +12,6 @@ in {
     delta
     fd
     fzf
-    home-manager
     gnused
     jq
     premium-fonts
