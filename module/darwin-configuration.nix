@@ -23,7 +23,6 @@
     shells = [pkgs.zsh];
     loginShell = pkgs.zsh;
     systemPackages = [
-      pkgs.devenv
       pkgs.gnused
     ];
   };
