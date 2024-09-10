@@ -31,6 +31,7 @@
     defaults = {
       dock.autohide = true;
       NSGlobalDomain."com.apple.swipescrolldirection" = false;
+      ".GlobalPreferences"."com.apple.mouse.scaling" = 0.125;
     };
   };
 
