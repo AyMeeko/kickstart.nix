@@ -26,13 +26,35 @@
     home-manager,
     nixGL,
     ...
-  }: let
-  in
+  }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         darwinConfigurations = {
           macmini-nix = let
             username = "nix";
+            system = "x86_64-darwin";
+          in
+            darwin.lib.darwinSystem {
+              inherit system;
+              specialArgs = { inherit inputs username; };
+              modules = [
+                ./module/darwin-configuration.nix
+                home-manager.darwinModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.extraSpecialArgs = { inherit inputs; };
+                  home-manager.users."${username}" = { pkgs, ... }: {
+                    imports = [
+                      ./system/x86_64-darwin.nix
+                      ./module/home-manager.nix
+                    ];
+                  };
+                }
+              ];
+            };
+          macmini-aymeeko = let
+            username = "aymeeko";
             system = "x86_64-darwin";
           in
             darwin.lib.darwinSystem {
