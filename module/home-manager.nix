@@ -40,6 +40,11 @@ in {
     file."./.config/omz-custom/my-theme.zsh-theme" = {
       source = ../config/my-zsh-theme;
     };
+
+    file."./.config/tmux" = {
+      source = ../config/tmux;
+      recursive = true;
+    };
   };
 
   programs.gpg.enable = true;
