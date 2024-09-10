@@ -49,6 +49,13 @@ in {
 
   programs.gpg.enable = true;
 
+  xdg.configFile = {
+    nvim = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/kickstart.nix/config/nvim";
+      recursive = true;
+    };
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
