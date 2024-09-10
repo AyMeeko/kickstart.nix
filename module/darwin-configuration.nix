@@ -27,6 +27,13 @@
     ];
   };
 
+  system = {
+    defaults = {
+      dock.autohide = true;
+      NSGlobalDomain."com.apple.swipescrolldirection" = false;
+    };
+  };
+
   programs.zsh.enable = true;
 
   services.nix-daemon.enable = true;

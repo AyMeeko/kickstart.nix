@@ -21,8 +21,8 @@ config.term = "xterm-256color"
 config.automatically_reload_config = true
 config.window_decorations = "RESIZE"
 config.window_padding = {
-  left = 0,
-  right = 0,
+  left = 5,
+  right = 5,
   top = 0,
   bottom = 0,
 }
