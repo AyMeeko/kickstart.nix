@@ -68,6 +68,17 @@
               username = "aymeeko";
             };
           };
+          wsl = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            modules = [
+              ./system/wsl.nix
+              ./module/home-manager.nix
+            ];
+            extraSpecialArgs = {
+              inherit inputs;
+              username = "aymeeko";
+            };
+          };
         };
 
         lib = import ./lib {inherit inputs;};
