@@ -7,16 +7,12 @@
 }: {
   homebrew = {
     enable = true;
-    brews = [
-      "displayplacer"
-    ];
     casks = [
       "1password"
       "alfred"
       "arc"
       "bettertouchtool"
       "charmstone"
-      "chatterino"
       "discord"
       "karabiner-elements"
       "slack"

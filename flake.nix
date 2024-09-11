@@ -39,6 +39,13 @@
               specialArgs = { inherit inputs username; };
               modules = [
                 ./module/darwin-configuration.nix
+                {
+                  homebrew = {
+                    enable = true;
+                    brews = [ "displayplacer" ];
+                    casks = [ "chatterino" ];
+                  };
+                }
                 home-manager.darwinModules.home-manager
                 {
                   home-manager.useGlobalPkgs = true;
