@@ -5,6 +5,34 @@
   username,
   ...
 }: {
+  homebrew = {
+    enable = true;
+    brews = [
+      "displayplacer"
+    ];
+    casks = [
+      "1password"
+      "alfred"
+      "arc"
+      "bettertouchtool"
+      "charmstone"
+      "chatterino"
+      "discord"
+      "karabiner-elements"
+      "slack"
+      "spotify"
+      "wezterm"
+    ];
+  };
+
+  environment = {
+    shells = [pkgs.zsh];
+    loginShell = pkgs.zsh;
+    systemPackages = [
+      pkgs.gnused
+    ];
+  };
+
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -18,33 +46,24 @@
       warn-dirty = false;
     };
   };
-
-  environment = {
-    shells = [pkgs.zsh];
-    loginShell = pkgs.zsh;
-    systemPackages = [
-      pkgs.gnused
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
     ];
-  };
+
+  programs.zsh.enable = true;
+  services.nix-daemon.enable = true;
 
   system = {
     defaults = {
       dock.autohide = true;
       NSGlobalDomain."com.apple.swipescrolldirection" = false;
+      NSGlobalDomain."com.apple.keyboard.fnState" = true;
       ".GlobalPreferences"."com.apple.mouse.scaling" = 0.125;
     };
   };
-
-  programs.zsh.enable = true;
-
-  services.nix-daemon.enable = true;
 
   users.users.${username} = {
     home = "/Users/${username}";
     shell = pkgs.zsh;
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-    ];
 }
