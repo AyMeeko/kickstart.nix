@@ -1,0 +1,5 @@
+The BetterTouchTool saved preset does not save the captured data from the Restore Window Layout trigger. It is below.
+
+```json
+[{"size":"{715, 541}","windowName":"Appearance","parentTitle":"System Settings","position":"{2479, 1251}","role":"AXWindow"},{"size":"{1422, 782}","windowName":"tmux","parentTitle":"WezTerm","position":"{1354, 458}","role":"AXWindow"},{"size":"{2131, 1199}","windowName":"how to backup\/import btt settings? - Discussion & Questions - BetterTouchTool Community","parentTitle":"Arc","position":"{646, 42}","role":"AXWindow"},{"size":"{940, 553}","windowName":"@Lorea - Discord","parentTitle":"Discord","position":"{0, 1247}","role":"AXWindow"},{"size":"{588, 877}","windowName":"Chatterino 2.5.1 - aymeeko","parentTitle":"Chatterino","position":"{1, 37}","role":"AXWindow"}]
+```
