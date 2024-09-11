@@ -1,0 +1,73 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+final_space = true
+version = 2
+
+[palette]
+brackets = "white"
+username = "cyan"
+path = "blue"
+branch = "green"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+
+  [[blocks.segments]]
+  type = "path"
+  style = "plain"
+  foreground = "p:brackets"
+  background = "transparent"
+  template = "[<cyan>{{ .UserName }}</>:<blue>{{ .Path }}</>"
+
+    [blocks.segments.properties]
+    style = 'full'
+
+  [[blocks.segments]]
+  type = "git"
+  style = "plain"
+  foreground = "p:branch"
+  background = "transparent"
+  template = ' <white>on</> {{ .HEAD }}'
+
+    [blocks.segments.properties]
+      branch_icon = ''
+      commit_icon = '@'
+      fetch_status = true
+
+  [[blocks.segments]]
+  type = "path"
+  style = "plain"
+  foreground = "p:brackets"
+  background = "transparent"
+  template = "]"
+
+  [[blocks.segments]]
+  type = "git"
+  style = "plain"
+  foreground = "p:branch"
+  background = "transparent"
+  template = """
+{{ if .Staging.Added }} <green>✚</>{{ end }}\
+{{ if .Staging.Modified }} <blue>✹</>{{ end }}\
+{{ if or (.Staging.Deleted) (.Working.Deleted) }} <red>✖</>{{ end }}\
+{{ if .Working.Untracked }} <cyan>✭</>{{ end }}"""
+
+    [blocks.segments.properties]
+      branch_icon = ''
+      commit_icon = '@'
+      fetch_status = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}magenta{{end}}",
+    ]
+    background = 'transparent'
+    template = '➜'

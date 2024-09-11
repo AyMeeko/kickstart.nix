@@ -15,10 +15,13 @@ in {
     gnumake
     gnused
     jq
+    oh-my-posh
     premium-fonts
     ripgrep
     tree
     wget
+    zoxide
+    zsh-fzf-tab
 
     # typescript / javascript
     nodejs
@@ -38,10 +41,6 @@ in {
       source = ../config/wezterm/common.lua;
     };
 
-    file."./.config/omz-custom/my-theme.zsh-theme" = {
-      source = ../config/my-zsh-theme;
-    };
-
     file."./.config/tmux" = {
       source = ../config/tmux;
       recursive = true;
@@ -53,6 +52,13 @@ in {
   xdg.configFile = {
     nvim = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/kickstart.nix/config/nvim";
+      recursive = true;
+    };
+  };
+
+  xdg.configFile = {
+    "oh-my-posh" = {
+      source = ../config/oh-my-posh;
       recursive = true;
     };
   };
@@ -110,7 +116,10 @@ in {
     defaultCommand = "rg -S";
     defaultOptions = [
       "--bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
-      "--preview 'cat {}'"
+    ];
+    # CTRL-T keybind options
+    fileWidgetOptions = [
+      "--preview 'bat --style=numbers --color=always {}'"
     ];
   };
 
@@ -124,11 +133,7 @@ in {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    extraLuaConfig = ''
-    '';
     extraPackages = [
-      # Included to build telescope-fzf-native.nvim
-      pkgs.cmake
       # Included for LuaSnip
       pkgs.luajitPackages.jsregexp
     ];
@@ -149,13 +154,68 @@ in {
     ];
   };
 
+  programs.zoxide.enable = true;
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    history = {
+      size = 5000;
+      path = "${config.xdg.dataHome}/zsh/history";
+      ignoreDups = true;
+      share = true;
+      save = 5000;
+    };
     initExtra = ''
+      source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+
+      # History options
+      setopt appendhistory
+      setopt sharehistory
+      setopt hist_ignore_space
+      setopt hist_ignore_all_dups
+      setopt hist_save_no_dups
+      setopt hist_ignore_dups
+      setopt hist_find_no_dups
+
+      # Stolen from oh-my-zsh
+      ## https://github.com/ohmyzsh/ohmyzsh/blob/80fa5e137672a529f65a05e396b40f0d133b2432/lib/directories.zsh#L10
+      setopt auto_cd
+      setopt auto_pushd
+      setopt pushd_ignore_dups
+      setopt pushdminus
+
+      # Keybindings
+      bindkey -e
+      bindkey '^p' history-search-backward
+      bindkey '^n' history-search-forward
+      bindkey '^[w' kill-region
+
+      # Completion styling
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+      zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
+      zstyle ':completion:*' menu no
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+      zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+      autoload -U compinit; compinit
+
+      # To customize prompt
+      #eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
+      eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/mine.toml)"
+
+      # Shell integrations
+      eval "$(${pkgs.fzf}/bin/fzf --zsh)"
+      eval "$(${pkgs.zoxide}/bin/zoxide init --cmd cd zsh)"
+      enable-fzf-tab
     '';
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+      }
+    ];
     shellAliases = {
       "gd" = "git diff --color";
       "gdc" = "git diff --cached --color";
@@ -163,18 +223,10 @@ in {
       "gc" = "git commit";
       "ga" = "git add";
       "gpr" = "git pull --rebase";
-      "ls" = "ls -G";
+      "ls" = "ls --color";
       "s" = "rg -S";
       "vim" = "nvim";
-    };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "direnv"
-      ];
-      custom = "$HOME/.config/omz-custom";
-      theme = "my-theme";
+      "..." = "../..";
     };
   };
 }
