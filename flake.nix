@@ -30,7 +30,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         darwinConfigurations = {
-          macmini-aymeeko = let
+          aymeeko = let
             username = "aymeeko";
             system = "x86_64-darwin";
           in
@@ -54,14 +54,14 @@
                   home-manager.extraSpecialArgs = { inherit inputs; };
                   home-manager.users."${username}" = { pkgs, ... }: {
                     imports = [
-                      ./system/x86_64-darwin.nix
+                      ./system/aymeeko.nix
                       ./module/home-manager.nix
                     ];
                   };
                 }
               ];
             };
-          macmini-amy = let
+          amy = let
             username = "amy";
             system = "x86_64-darwin";
           in
@@ -78,7 +78,7 @@
                   home-manager.extraSpecialArgs = { inherit inputs; };
                   home-manager.users."${username}" = { pkgs, ... }: {
                     imports = [
-                      ./system/x86_64-darwin.nix
+                      ./system/amy.nix
                       ./module/home-manager.nix
                     ];
                   };

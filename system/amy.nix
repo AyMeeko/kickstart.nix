@@ -12,6 +12,10 @@
       source = ../config/karabiner/karabiner.json;
     };
 
+    file."./.ssh/config" = {
+      source = ../ssh/amy;
+    };
+
     activation = {
       removeExistingKarabiner = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
         rm -f ~/.config/karabiner/karabiner.json.backup
@@ -21,6 +25,6 @@
 
   programs.git = {
     userEmail = "87551537+AyMeeko@users.noreply.github.com";
-    userName = "AyMeeko";
+    userName = "Amy";
   };
 }

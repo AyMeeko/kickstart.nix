@@ -1,5 +1,7 @@
 # Instructions
 - install [nix](https://nixos.org/download/)
+- log in to 1Password
+- copy ssh keys
 - clone [kickstart.nix](https://github.com/AyMeeko/kickstart.nix)
-- `TARGET=macmini-aymeeko make darwin-initialize`
-- for subsequent rebuilds, use `make macmini-aymeeko`
+- `make initialize-aymeeko`
+- for subsequent rebuilds, use `make aymeeko`

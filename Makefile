@@ -1,10 +1,10 @@
-.PHONY: initialize-darwin-amy
-initialize-darwin-amy:
-	nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake .#macmini-amy
+.PHONY: initialize-amy
+initialize-amy:
+	nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake .#amy
 
-.PHONY: initialize-darwin-aymeeko
-initialize-darwin-aymeeko:
-	nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake .#macmini-aymeeko
+.PHONY: initialize-aymeeko
+initialize-aymeeko:
+	nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake .#aymeeko
 
 .PHONY: popos
 popos:
@@ -14,13 +14,13 @@ popos:
 wsl:
 	home-manager switch --flake .#wsl
 
-.PHONY: macmini-aymeeko
-macmini-aymeeko:
-	darwin-rebuild switch --flake .#macmini-aymeeko
+.PHONY: aymeeko
+aymeeko:
+	darwin-rebuild switch --flake .#aymeeko
 
-.PHONY: macmini-amy
-macmini-amy:
-	darwin-rebuild switch --flake .#macmini-amy
+.PHONY: amy
+amy:
+	darwin-rebuild switch --flake .#amy
 
 .PHONY: clean
 clean:
