@@ -10,6 +10,7 @@ in
       _1password-gui
       bruno
       copyq
+      gnumake
       gnused
       home-manager
       xsel

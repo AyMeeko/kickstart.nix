@@ -61,6 +61,30 @@
                 }
               ];
             };
+          macmini-amy = let
+            username = "amy";
+            system = "x86_64-darwin";
+          in
+            darwin.lib.darwinSystem {
+              inherit system;
+              specialArgs = { inherit inputs username; };
+              modules = [
+                ./module/darwin-configuration.nix
+                home-manager.darwinModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.backupFileExtension = "backup";
+                  home-manager.extraSpecialArgs = { inherit inputs; };
+                  home-manager.users."${username}" = { pkgs, ... }: {
+                    imports = [
+                      ./system/x86_64-darwin.nix
+                      ./module/home-manager.nix
+                    ];
+                  };
+                }
+              ];
+            };
         };
         homeConfigurations = {
           popos = home-manager.lib.homeManagerConfiguration {

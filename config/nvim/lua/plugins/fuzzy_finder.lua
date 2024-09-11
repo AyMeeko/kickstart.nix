@@ -7,7 +7,6 @@ return {
     {"benfowler/telescope-luasnip.nvim"},
   },
   config = function()
-    require("telescope").load_extension("fzf")
     require("telescope").load_extension("luasnip")
 
     local actions = require("telescope.actions")
@@ -43,7 +42,17 @@ return {
           height = 0.20,
         },
       },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        }
+      },
     })
+    -- this needs to be loaded after the telescope setup, apparently
+    require("telescope").load_extension("fzf")
 
     -- https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/palette.lua
     --local colors = require("onedark.palette")["dark"]

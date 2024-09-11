@@ -12,6 +12,7 @@ in {
     delta
     fd
     fzf
+    gnumake
     gnused
     jq
     premium-fonts

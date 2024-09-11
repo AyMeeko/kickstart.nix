@@ -27,6 +27,7 @@
     loginShell = pkgs.zsh;
     systemPackages = [
       pkgs.gnused
+      pkgs.gnumake
     ];
   };
 
