@@ -72,7 +72,8 @@ in {
       column.ui = "auto";
       core = {
         editor = "nvim";
-        fsmonitor = true;
+        # noisy -- "error: daemon terminated"
+        fsmonitor = false;
         pager = "delta";
       };
       fetch = {
