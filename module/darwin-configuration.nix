@@ -11,6 +11,7 @@
       "1password"
       "alfred"
       "arc"
+      "bazecor"
       "bettertouchtool"
       "charmstone"
       "discord"
