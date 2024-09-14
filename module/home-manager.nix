@@ -20,6 +20,10 @@ in {
     tree
     wget
 
+    # nix lsp
+    cargo
+    nil
+
     # typescript / javascript
     nodejs
     nodePackages.typescript
@@ -113,13 +117,6 @@ in {
       "--preview 'cat {}'"
     ];
   };
-
-  # xdg.configFile = {
-  #   nvim = {
-  #     source = config.lib.file.mkOutOfStoreSymlink ../config/nvim;
-  #     recursive = true;
-  #   };
-  # };
 
   programs.neovim = {
     enable = true;
