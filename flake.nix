@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -21,13 +22,21 @@
   outputs = inputs@{
     self,
     nixpkgs,
+    nixpkgs-unstable,
     flake-parts,
     darwin,
     home-manager,
     nixGL,
     ...
   }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  let
+    pkgs-unstable = import nixpkgs-unstable {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    };
+  in
+    flake-parts.lib.mkFlake { inherit inputs; }
+    {
       flake = {
         darwinConfigurations = {
           aymeeko = let
@@ -51,7 +60,9 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.backupFileExtension = "backup";
-                  home-manager.extraSpecialArgs = { inherit inputs; };
+                  home-manager.extraSpecialArgs = {
+                    inherit inputs pkgs-unstable;
+                  };
                   home-manager.users."${username}" = { pkgs, ... }: {
                     imports = [
                       ./system/aymeeko.nix
@@ -75,7 +86,9 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.backupFileExtension = "backup";
-                  home-manager.extraSpecialArgs = { inherit inputs; };
+                  home-manager.extraSpecialArgs = {
+                    inherit inputs pkgs-unstable;
+                  };
                   home-manager.users."${username}" = { pkgs, ... }: {
                     imports = [
                       ./system/amy.nix
@@ -95,7 +108,7 @@
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs pkgs-unstable;
               username = "aymeeko";
             };
           };
@@ -106,7 +119,7 @@
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs pkgs-unstable;
               username = "aymeeko";
             };
           };

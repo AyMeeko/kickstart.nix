@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, ... }: let
+{ inputs, pkgs, pkgs-unstable, config, ... }: let
   premium-fonts = inputs.self.packages.${pkgs.system}.fonts;
 in {
   nixpkgs.config.allowUnfree = true;
@@ -119,6 +119,7 @@ in {
   };
 
   programs.neovim = {
+    package = pkgs-unstable.neovim-unwrapped;
     enable = true;
     defaultEditor = true;
     extraLuaConfig = ''
