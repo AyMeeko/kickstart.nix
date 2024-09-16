@@ -19,6 +19,7 @@ in {
     premium-fonts
     ripgrep
     tree
+    unixtools.watch
     wget
 
     # nix lsp
