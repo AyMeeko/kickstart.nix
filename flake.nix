@@ -30,8 +30,8 @@
     ...
   }:
   let
-    pkgs-unstable = import nixpkgs-unstable {
-      system = "x86_64-linux";
+    pkgs-unstable = system: import nixpkgs-unstable {
+      inherit system;
       config.allowUnfree = true;
     };
   in
@@ -61,7 +61,8 @@
                   home-manager.useUserPackages = true;
                   home-manager.backupFileExtension = "backup";
                   home-manager.extraSpecialArgs = {
-                    inherit inputs pkgs-unstable;
+                    inherit inputs;
+                    pkgs-unstable = pkgs-unstable system;
                   };
                   home-manager.users."${username}" = { pkgs, ... }: {
                     imports = [
@@ -87,7 +88,8 @@
                   home-manager.useUserPackages = true;
                   home-manager.backupFileExtension = "backup";
                   home-manager.extraSpecialArgs = {
-                    inherit inputs pkgs-unstable;
+                    inherit inputs;
+                    pkgs-unstable = pkgs-unstable system;
                   };
                   home-manager.users."${username}" = { pkgs, ... }: {
                     imports = [
@@ -108,7 +110,8 @@
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {
-              inherit inputs pkgs-unstable;
+              inherit inputs;
+              pkgs-unstable = pkgs-unstable "x86_64-linux";
               username = "aymeeko";
             };
           };
@@ -119,7 +122,8 @@
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {
-              inherit inputs pkgs-unstable;
+              inherit inputs;
+              pkgs-unstable = pkgs-unstable "x86_64-linux";
               username = "aymeeko";
             };
           };
