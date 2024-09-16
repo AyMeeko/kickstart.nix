@@ -132,7 +132,13 @@
                 }
             ],
             "name": "Default profile",
-            "selected": true
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "right_control" },
+                    "to": [{ "software_function": { "iokit_power_management_sleep_system": {} } }]
+                }
+            ]
         }
     ]
 }
