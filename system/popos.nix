@@ -18,6 +18,10 @@ in
       (config.lib.nixGL.wrap wezterm)
     ];
 
+    file."./.ssh/config" = {
+      source = ../ssh/popos;
+    };
+
     file."./.config/kmonad.kbd" = {
       source = ../config/kmonad.kbd;
     };
