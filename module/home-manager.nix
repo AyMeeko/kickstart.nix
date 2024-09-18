@@ -10,6 +10,7 @@ in {
   home.packages = with pkgs; [
     bat
     delta
+    dig
     fd
     fzf
     gnumake
@@ -161,7 +162,7 @@ in {
       "gc" = "git commit";
       "ga" = "git add";
       "gpr" = "git pull --rebase";
-      "ls" = "ls -G";
+      "ls" = "ls --color";
       "s" = "rg -S";
       "vim" = "nvim";
     };
