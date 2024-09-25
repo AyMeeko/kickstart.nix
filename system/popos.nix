@@ -13,9 +13,10 @@ in
       gnumake
       gnused
       home-manager
-      xsel
       kmonad
+      obsidian
       (config.lib.nixGL.wrap wezterm)
+      xsel
     ];
 
     file."./.ssh/config" = {

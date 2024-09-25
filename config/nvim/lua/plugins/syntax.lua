@@ -15,7 +15,7 @@ return {
       highlight = {
         enable = true,
         disable = function(lang, buf)
-          if lang == "html" then
+          if lang == "html" or lang == "markdown" then
             return true
           end
         end,
