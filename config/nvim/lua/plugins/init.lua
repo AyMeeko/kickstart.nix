@@ -154,4 +154,23 @@ return {
   -- UML diagrams
   {"scrooloose/vim-slumlord", ft = "plantuml", event = "VeryLazy"},
   {"aklt/plantuml-syntax", ft = "plantuml", event = "VeryLazy"},
+
+  -- leetcode
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim", -- required by telescope
+      "MunifTanjim/nui.nvim",
+
+      -- optional
+      "nvim-treesitter/nvim-treesitter",
+      "rcarriga/nvim-notify",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      lang = "python3",
+    },
+  }
 }
