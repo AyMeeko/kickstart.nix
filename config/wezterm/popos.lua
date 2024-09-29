@@ -1,5 +1,5 @@
 local config = require("common")
 
-config.font_size = 13.0
+config.font_size = 10.0
 
 return config
