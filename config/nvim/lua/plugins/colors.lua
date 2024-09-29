@@ -1,5 +1,15 @@
 return {
   {
+    "norcalli/nvim-colorizer.lua",
+    event = "VeryLazy",
+    config = function()
+      require('colorizer').setup({
+        filetypes = { "*", "!TelescopeResults" },
+      })
+    end
+  },
+
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,

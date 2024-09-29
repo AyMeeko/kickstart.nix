@@ -60,6 +60,10 @@ return {
         {"<leader>gf", vim.cmd.OpenInGHFile, description = "Open [g]ithub [f]ile"},
         {"<leader>ct", ":ColorizerToggle<CR>", description = "[C]olorizer [t]oggle"},
 
+        ---- LEETCODE ----
+        {"<C-s>s", ":Leet submit<CR>", description = "[LC] [S]ubmit"},
+        {"<C-s>r", ":Leet run<CR>", description = "[LC] [R]un"},
+
         ---- VIMWIKI ----
         {"<leader>ww", vim.cmd.VimwikiIndex, description = "Load Vimwiki"},
         {
