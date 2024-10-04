@@ -118,9 +118,6 @@ return {
     end,
   },
 
-  -- better python identation
-  {"Vimjas/vim-python-pep8-indent", event = "VeryLazy"},
-
   -- open current file in GHE
   {"almo7aya/openingh.nvim", event = "VeryLazy"},
 
