@@ -1,7 +1,4 @@
 { inputs, config, pkgs, username, ... }:
-let
-  nixGLIntel = inputs.nixGL.packages."${pkgs.system}".nixGLIntel;
-in
 {
   home = {
     username = username;
@@ -12,7 +9,6 @@ in
       gnused
       home-manager
       xsel
-      (config.lib.nixGL.wrap wezterm)
     ];
   };
 
@@ -20,11 +16,14 @@ in
     # todo: remove when https://github.com/nix-community/home-manager/pull/5355 gets merged:
     (builtins.fetchurl {
      url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
-     sha256 = "0g5yk54766vrmxz26l3j9qnkjifjis3z2izgpsfnczhw243dmxz9";
+     sha256 = "1krclaga358k3swz2n5wbni1b2r7mcxdzr6d7im6b66w3sbpvnb3";
      })
   ];
 
-  nixGL.prefix = "${nixGLIntel}/bin/nixGLIntel";
+  nixGL = {
+    packages = inputs.nixGL.packages."${pkgs.system}";
+    defaultWrapper = "mesa"; # this might be wrong
+  };
 
   programs.git = {
     userEmail = "87551537+AyMeeko@users.noreply.github.com";

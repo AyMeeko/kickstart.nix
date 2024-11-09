@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixGL = {
-      url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
+      url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -110,7 +110,7 @@
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs nixGL;
               pkgs-unstable = pkgs-unstable "x86_64-linux";
               username = "aymeeko";
             };
@@ -122,7 +122,7 @@
               ./module/home-manager.nix
             ];
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs nixGL;
               pkgs-unstable = pkgs-unstable "x86_64-linux";
               username = "aymeeko";
             };
