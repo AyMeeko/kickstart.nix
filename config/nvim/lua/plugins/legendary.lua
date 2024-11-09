@@ -63,6 +63,7 @@ return {
         ---- LEETCODE ----
         {"<C-s>s", ":Leet submit<CR>", description = "[LC] [S]ubmit"},
         {"<C-s>r", ":Leet run<CR>", description = "[LC] [R]un"},
+        {"<C-s>c", ":Leet console<CR>", description = "[LC] [C]onsole"},
 
         ---- VIMWIKI ----
         {"<leader>ww", vim.cmd.VimwikiIndex, description = "Load Vimwiki"},
