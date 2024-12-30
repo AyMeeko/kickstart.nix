@@ -15,6 +15,7 @@
       "bettertouchtool"
       "charmstone"
       "discord"
+      "ghostty"
       "karabiner-elements"
       "slack"
       "spotify"

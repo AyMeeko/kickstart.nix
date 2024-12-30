@@ -1,0 +1,41 @@
+# Ghostty theme
+theme = catppuccin-macchiato
+
+# Shell integrations
+# shell-integration = fish
+
+# Font family
+font-family = Cascadia Code
+font-style = Regular
+font-style-italic = Regular Italic
+font-style-bold = Bold
+font-style-bold-italic = Bold Italic
+
+# Font size
+font-size = 15
+
+# Set the background-opacity to be fully opaque
+background-opacity = 1.0
+
+# Cursor style
+cursor-style-blink = false
+
+# Clipboard settings
+clipboard-read = allow
+clipboard-write = allow
+
+# macos options
+macos-option-as-alt = true
+macos-titlebar-proxy-icon = hidden
+
+# Always show ghostty as the title
+title = ghostty
+# Window settings
+window-width = 180
+window-height = 50
+window-colorspace = display-p3
+window-padding-color = background
+window-padding-balance = true
+window-padding-x = 0
+window-padding-y = 0
+
