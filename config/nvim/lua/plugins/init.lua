@@ -1,12 +1,5 @@
 return {
   {
-    "AyMeeko/stack-trace.nvim",
-    event = "VeryLazy",
-    version = "v0.2.0",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-
-  {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -76,9 +69,6 @@ return {
     dependencies = "anuvyklack/middleclass",
   },
 
-  -- bubble text
-  --{"fedepujol/move.nvim"},
-
   -- easily add/delete/change "surroundings"
   {
     "kylechui/nvim-surround",
@@ -88,9 +78,6 @@ return {
       require("nvim-surround").setup({})
     end
   },
-
-  -- easy commenting/uncommenting
-  --{"scrooloose/nerdcommenter"},
 
   -- multiple cursors
   {
@@ -136,16 +123,6 @@ return {
     config = function()
       require("ibl").setup({enabled = false})
     end,
-  },
-
-  -- syntax highlighting for helm
-  -- cant lazy load or ft load
-  {'towolf/vim-helm'},
-
-  -- syntax highlighting for mustache/handlebars
-  {
-    "mustache/vim-mustache-handlebars",
-    ft = {"yml", "mustache"}
   },
 
   -- UML diagrams

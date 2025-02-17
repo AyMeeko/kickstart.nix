@@ -10,24 +10,6 @@ return {
   config = function()
     require("legendary").setup({
       keymaps = {
-        ---- stack-trace ----
-        {"ta", function()
-          require("stack-trace").add_stop()
-          vim.lsp.buf.definition()
-        end, description = "[T]race [a]dd"},
-        {"ts", function()
-          require("stack-trace").show_stops()
-        end, description = "[T]race [s]how"},
-        {"tc", function()
-          require("stack-trace").clear_stops()
-        end, description = "[T]race [c]lear"},
-        {"tr", function()
-          require("stack-trace").return_stop()
-          if (vim.fn.tabpagenr() > 1) then
-            vim.cmd.tabclose()
-          end
-        end, description = "[T]race [r]eturn"},
-
         -- General vim keymaps --
         {"gcc", description = "Toggle comment line"},
         {"<C-l>", vim.cmd.tabn, description = "Tab next"},
@@ -118,20 +100,6 @@ return {
         {"<leader>gd", vim.cmd.VimwikiTabnewLink, description = "[Vimwiki] [G]o to [D]efintion of file in new tab"},
         {"<leader>=", "<Plug>VimwikiAddHeaderLevel", description = "[Vimwiki] Add header level" },
 
-        ---- MOVE ----
-        --{
-          --"<C-j>",
-          --{ n = ":MoveLine(1)<CR>", v = ":MoveBlock(1)<CR>"},
-          --description = "Bubble Text Down",
-          --opts = {noremap = true, silent = true}
-        --},
-        --{
-          --"<C-k>",
-          --{ n = ":MoveLine(-1)<CR>", v = ":MoveBlock(-1)<CR>"},
-          --description = "Bubble Text Up",
-          --opts = {noremap = true, silent = true}
-        --},
-
         ---- TELESCOPE ----
         {
           "<leader>ft", function()
@@ -203,12 +171,6 @@ return {
         },
 
         ---- NVIM TREE ----
-        --{
-          --"<leader>t", function()
-            --require("telescope").extensions.file_browser.file_browser()
-          --end,
-          --description = "Toggle file [T]ree"
-        --},
         {
           "<leader>t", function()
             vim.cmd.NvimTreeToggle()
