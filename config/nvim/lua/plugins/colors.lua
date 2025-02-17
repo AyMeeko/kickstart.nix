@@ -3,9 +3,7 @@ return {
     "norcalli/nvim-colorizer.lua",
     event = "VeryLazy",
     config = function()
-      require('colorizer').setup({
-        filetypes = { "*", "!TelescopeResults" },
-      })
+      require('colorizer').setup({})
     end
   },
 
@@ -50,10 +48,6 @@ return {
           },
           notify = false,
           nvimtree = true,
-          telescope = {
-            enabled = true,
-            style = "nvchad"
-          },
           treesitter = true,
           vimwiki = true,
         }

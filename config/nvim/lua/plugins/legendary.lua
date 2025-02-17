@@ -28,8 +28,6 @@ return {
         -- Plugin keymaps --
         {"<leader>fk", ":Legendary<CR>", description = "Open Legendary"},
         {"<C-f>f", ":CtrlSF ", description = "Launch CtrlSF"},
-        {"<leader>fs", ":Telescope luasnip<CR>", description = "[F]ind [S]nippet"},
-        {"<leader>ti", description = "[T]oggle Rainbow [I]ndent Lines" },
         {"<leader>gs", vim.cmd.Git, description = "[Git] [G]it [S]tatus"},
         {"<leader>gd", vim.cmd.Gvdiffsplit, description = "[Git] [G]it [D]iff"},
         {
@@ -38,8 +36,6 @@ return {
           end,
           description = "[Git] [G]it [B]lame"
         },
-        {"<leader>gl", vim.cmd.OpenInGHFileLines, description = "Open [g]ithub file at [l]ine"},
-        {"<leader>gf", vim.cmd.OpenInGHFile, description = "Open [g]ithub [f]ile"},
         {"<leader>ct", ":ColorizerToggle<CR>", description = "[C]olorizer [t]oggle"},
 
         ---- LEETCODE ----
@@ -100,60 +96,28 @@ return {
         {"<leader>gd", vim.cmd.VimwikiTabnewLink, description = "[Vimwiki] [G]o to [D]efintion of file in new tab"},
         {"<leader>=", "<Plug>VimwikiAddHeaderLevel", description = "[Vimwiki] Add header level" },
 
-        ---- TELESCOPE ----
+        ---- SNACKS ----
+        -- Top Pickers & Explorer
+        { "<C-p>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+        { "<leader>bl", function() Snacks.picker.buffers() end, desc = "[B]uffer [l]ist" },
+        { "<leader>st", function() Snacks.picker.grep() end, desc = "[S]earch [t]ext" },
+        { "<leader>n", function() Snacks.picker.notifications() end, desc = "[N]otification History" },
+        -- find
+        { "<leader>ff", function() Snacks.picker.files() end, desc = "[F]ind [F]iles" },
+        { "<leader>fg", function() Snacks.picker.git_files() end, desc = "[F]ind [G]it Files" },
+        { "<leader>fr", function() Snacks.picker.recent() end, desc = "[F]ind [R]ecent" },
+        -- Grep
+        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+        -- Other
+        { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+        { "<leader>gl", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
+        { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+        { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
         {
           "<leader>ft", function()
-            require("plugins.telescope.custom_pickers").vimwiki_tags()
+            require("plugins.snacks.custom_pickers").vimwiki_tags()
           end,
           description = "[F]ind [T]ags"
-        },
-        {
-          "<C-p>", function()
-            require("plugins.telescope.custom_pickers").project_files()
-          end,
-          description = "Fuzzy search files"
-        },
-        {
-          "<leader>ff", function()
-            local utils = require("telescope.utils")
-            require("telescope.builtin").find_files({ cwd = utils.buffer_dir() })
-          end,
-          description = "Fuzzy search [f]ind [f]iles"
-        },
-        {
-          "<leader>st", function()
-            local utils = require("telescope.utils")
-            local opt = require('telescope.themes').get_ivy({
-              cwd = utils.buffer_dir(),
-              shorten_path = true,
-            })
-            require('telescope.builtin').live_grep(opt)
-            --require('telescope.builtin').live_grep()
-          end,
-          description = "[S]earch [T]ext (grep in project)"
-        },
-        {
-          "<leader>bl", function()
-            require("telescope.builtin").buffers()
-          end,
-          description = "Open [b]uffer [l]ist"
-        },
-        {
-          "<leader>fh", function()
-            require("telescope.builtin").help_tags()
-          end,
-          description = "[F]ind [H]elp tags"
-        },
-        {
-          "<leader>ss", function()
-            local opt = require('telescope.themes').get_ivy({
-              cwd = "~/scratch",
-              shorten_path = true
-            })
-            require('telescope.builtin').live_grep(opt)
-            --require('telescope.builtin').live_grep({ cwd = "~/scratch" })
-          end,
-          description = "[S]earch for text in [S]cratch (grep in ~/scratch)"
         },
 
         ---- VIM-TEST ----
