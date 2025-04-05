@@ -28,21 +28,22 @@ return {
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          --theme = "onedark"
-          theme = "catppuccin"
+          theme = "catppuccin-macchiato",
+          components_separators = '',
+          section_separators = { left = '', right = '' },
         },
         sections = {
           lualine_a = {"mode"},
           lualine_b = {"branch", "diff"},
-          lualine_c = {{"filename", path=1}},
+          lualine_c = { { "filename", path = 1 } },
           lualine_x = {
-            {"diagnostics", sources = {"nvim_lsp"}},
+            { "diagnostics", sources = { "nvim_lsp" } },
             "encoding",
             "fileformat",
             "filetype"
           },
-          lualine_y = {"progress"},
-          lualine_z = {"location"}
+          lualine_y = { "progress" },
+          lualine_z = { "location" }
         }
       })
       vim.opt.showmode = false -- hide status bar so there aren't two
@@ -105,9 +106,6 @@ return {
     end,
   },
 
-  -- open current file in GHE
-  {"almo7aya/openingh.nvim", event = "VeryLazy"},
-
   -- better quickfix?
   {
     "kevinhwang91/nvim-bqf",
@@ -115,19 +113,12 @@ return {
     event = "VeryLazy"
   },
 
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
-    main = "ibl",
-    opts = {},
-    config = function()
-      require("ibl").setup({enabled = false})
-    end,
-  },
-
   -- UML diagrams
   {"scrooloose/vim-slumlord", ft = "plantuml", event = "VeryLazy"},
   {"aklt/plantuml-syntax", ft = "plantuml", event = "VeryLazy"},
+
+  -- smarter indent settings
+  { 'tpope/vim-sleuth' },
 
   -- leetcode
   {
@@ -146,5 +137,15 @@ return {
     opts = {
       lang = "python3",
     },
-  }
+  },
+
+  -- {
+  --   'wassimk/gh-navigator.nvim',
+  --   version = "v0.1.3",
+  --   event = "VeryLazy",
+  --   config = true,
+  --   keys = {
+  --     { "<leader>or", ":GH pr<CR>", desc = "[O]pen P[R]" },
+  --   }
+  -- },
 }

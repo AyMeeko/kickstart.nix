@@ -3,14 +3,37 @@ return {
   config = function()
     require("gitsigns").setup({
       on_attach = function(bufnr)
+        local gitsigns = require('gitsigns')
+
         local function map(mode, lhs, rhs, opts)
-          opts = vim.tbl_extend("force", {noremap = true, silent = true}, opts or {})
-          vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, lhs, rhs, opts)
         end
 
         -- Navigation
-        map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr = true})
-        map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr = true})
+        map('n', ']c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({']c', bang = true})
+          else
+            gitsigns.nav_hunk('next')
+          end
+        end)
+
+        map('n', '[c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({'[c', bang = true})
+          else
+            gitsigns.nav_hunk('prev')
+          end
+        end)
+
+        map('n', '<leader>ga', gitsigns.stage_hunk)
+        map('v', '<leader>ga', function()
+          gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end)
+
+        map('n', '<leader>gp', gitsigns.preview_hunk)
       end
     })
   end,

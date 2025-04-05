@@ -48,11 +48,19 @@ return {
           },
           notify = false,
           nvimtree = true,
+          -- snacks = true,
           treesitter = true,
           vimwiki = true,
         }
       })
       vim.cmd.colorscheme "catppuccin"
+
+      -- 'highlight' the current line number, but not the line itself
+      local colors = require("catppuccin.palettes").get_palette("macchiato")
+      vim.o.cursorline = true
+      vim.api.nvim_set_hl(0, 'CursorLineNr', {fg = colors.text})
+      vim.api.nvim_set_hl(0, 'CursorLine', {bg = colors.base})
+
     end,
   },
 }

@@ -145,8 +145,6 @@ in {
     shell = "${pkgs.zsh}/bin/zsh";
     terminal = "xterm-256color";
     extraConfig = builtins.readFile ../config/tmux.conf;
-    plugins = [
-    ];
   };
 
   programs.zsh = {

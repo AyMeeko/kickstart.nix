@@ -31,20 +31,51 @@ return {
           truncate = 150,
         }
       },
+      layout = {
+        preset = "ivy_split",
+        preview = false,
+      },
       matcher = {
         cwd_bonus = true,
         frecency = true,
         history_bonus = true
       },
-      layout = {
-        preset = "ivy",
-        preview = false,
-      },
+      -- previewers = {
+      --   diff = {
+      --     cmd = { "delta" }
+      --   }
+      -- },
       win = {
         -- input = {keys = {["<Esc>"] = {"close", mode = {"n", "i"}}}}
-      }
+        input = {
+          keys = {
+            ["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<a-o>"] = "cycle_win",
+          }
+        },
+        list = {
+          keys = {
+            ["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<a-o>"] = "cycle_win",
+          }
+        },
+        preview = {
+          keys = {
+            ["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<a-o>"] = "cycle_win",
+          }
+        }
+      },
     },
     quickfile = { enabled = true },
+    scratch = {
+      win = {
+        width = 300
+      }
+    },
     scope = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },

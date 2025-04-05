@@ -69,6 +69,10 @@ return {
       local choice = luasnip.choice_node
       local dynamicn = luasnip.dynamic_node
 
+      local function get_today_date(_, _, delimiter)
+        return os.date("%m" .. delimiter .. "%d" .. delimiter .. "%y")
+      end
+
       -- https://sbulav.github.io/vim/neovim-setting-up-luasnip/
       luasnip.add_snippets(nil, {
         vimwiki = {
@@ -82,10 +86,43 @@ return {
             text({":", "---", ""}),
             insert(0)
           }),
+          snip({
+            trig = "note",
+            namr = "Note Template",
+            dscr = "new vimwiki note template"
+          },
+          {
+            func(get_today_date, {}, {user_args = {"_"}}),
+            text("_"),
+            insert(1, "placeholder"),
+            text(".md")
+          }),
+          snip({
+            trig = "sync",
+            namr = "Daily Sync Template",
+            dscr = "new daily sync template"
+          },
+          {
+            text("#### "),
+            func(get_today_date, {}, {user_args = {"/"}}),
+            text({"", "Y:", "- "}),
+            insert(1, "yesterday placeholder"),
+            text({"", "T:", "- "}),
+            insert(2, "today placeholder"),
+          }),
         },
       })
       require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({paths = "~/src/personal/private-snippets"})
+
+      vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
+      vim.keymap.set({"i", "s"}, "<C-J>", function() luasnip.jump(-1) end, {silent = true})
+
+      vim.keymap.set({"i", "s"}, "<C-E>", function()
+        if luasnip.choice_active() then
+          luasnip.change_choice(1)
+        end
+      end, {silent = true})
     end,
   }
 }

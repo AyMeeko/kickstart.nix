@@ -37,64 +37,17 @@ return {
           description = "[Git] [G]it [B]lame"
         },
         {"<leader>ct", ":ColorizerToggle<CR>", description = "[C]olorizer [t]oggle"},
-
-        ---- LEETCODE ----
-        {"<C-s>s", ":Leet submit<CR>", description = "[LC] [S]ubmit"},
-        {"<C-s>r", ":Leet run<CR>", description = "[LC] [R]un"},
-        {"<C-s>c", ":Leet console<CR>", description = "[LC] [C]onsole"},
+        -- Defined in note_taking.lua
+        { "<leader>p", desc = "Paste image from system clipboard" },
 
         ---- VIMWIKI ----
-        {"<leader>ww", vim.cmd.VimwikiIndex, description = "Load Vimwiki"},
-        {
-          "<leader>sc", function()
-            if vim.g.created_notepad then
-              vim.g.scratch_return_window = vim.fn.tabpagenr()
-              vim.cmd("tabfirst")
-            else
-              vim.g.scratch_return_window = vim.fn.tabpagenr() + 1
-              vim.cmd("0tabnew")
-              vim.cmd("VimwikiMakeDiaryNote")
-              vim.g.created_notepad = true
-            end
-          end,
-          description = "[Vimwiki] Open today's [sc]ratch buffer"
-        },
-        {
-          "<leader>bb", function()
-            local return_window = vim.g.scratch_return_window
-            if return_window then
-              vim.cmd(return_window .. "tabn")
-              vim.g.scratch_return_window = nil
-            else
-              vim.cmd("echo 'No return window set.'")
-            end
-          end,
-          description = "[Vimwiki] Switch [b]ack to [b]uffer after using scratch"
-        },
-        {
-          "<leader>ui", function()
-            vim.cmd("VimwikiRebuildTags")
-            vim.cmd("VimwikiGenerateTagLinks")
-            vim.cmd("w")
-          end,
-          description = "[Vimwiki] [U]pdate [I]ndex"
-        },
-        {
-          "<leader>cn", function()
-            local filename = os.date("%Y-%m-%dT%H%M%S") .. ".md"
-            vim.cmd("tabnew ~/notes/" .. filename)
-          end,
-          description = "[Vimwiki] [C]reate [N]ote"
-        },
-        {
-          "<leader>pn", function()
-            local filename = os.date("%Y-%m-%dT%H%M%S") .. ".md"
-            vim.cmd("tabnew ~/private_notes/" .. filename)
-          end,
-          description = "[Vimwiki] [P]rivate [N]ote"
-        },
-        {"<leader>gd", vim.cmd.VimwikiTabnewLink, description = "[Vimwiki] [G]o to [D]efintion of file in new tab"},
-        {"<leader>=", "<Plug>VimwikiAddHeaderLevel", description = "[Vimwiki] Add header level" },
+        -- Defined in note_taking.lua
+        {"<leader>ww", description = "Load Vimwiki"},
+        {"<leader>sc", description = "[Vimwiki] Open today's [sc]ratch buffer"},
+        {"<leader>bb", description = "[Vimwiki] Switch [b]ack to [b]uffer after using scratch"},
+        {"<leader>ui", description = "[Vimwiki] [U]pdate [I]ndex"},
+        {"<leader>gf", description = "[Vimwiki] [G]o to [F]ile in new tab"},
+        {"<leader>=", description = "[Vimwiki] Add header level" },
 
         ---- SNACKS ----
         -- Top Pickers & Explorer
@@ -107,18 +60,30 @@ return {
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "[F]ind [G]it Files" },
         { "<leader>fr", function() Snacks.picker.recent() end, desc = "[F]ind [R]ecent" },
         -- Grep
-        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "[S]earch [W]ord - Visual selection or word", mode = { "n", "x" } },
         -- Other
         { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-        { "<leader>gl", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
+        { "<leader>gh", function() Snacks.gitbrowse() end, desc = "Browse in [G]it[h]ub", mode = { "n", "v" } },
         { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
         { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+        {"<leader>gl",  function() Snacks.picker.git_log({layout = {preview = true, fullscreen = true}}) end, desc = "[G]it [L]og"},
         {
           "<leader>ft", function()
             require("plugins.snacks.custom_pickers").vimwiki_tags()
           end,
           description = "[F]ind [T]ags"
         },
+        -- Defined in snacks.lua
+        { "<leader>us", desc = "Toggle Spelling" },
+        { "<leader>uw", desc = "Toggle Wrap" },
+        { "<leader>uL", desc = "Toggle Relative Number" },
+        { "<leader>ul", desc = "Toggle Line Number" },
+        { "<leader>ud", desc = "Toggle Diagnostics" },
+        { "<leader>uc", desc = "Toggle Conceal Level" },
+        { "<leader>uT", desc = "Toggle Treesitter" },
+        { "<leader>uh", desc = "Toggle Inlay Hints" },
+        { "<leader>ug", desc = "Toggle Indent Lines" },
+        { "<leader>uD", desc = "Toggle Dim Lines" },
 
         ---- VIM-TEST ----
         {
@@ -136,12 +101,6 @@ return {
 
         ---- NVIM TREE ----
         {
-          "<leader>t", function()
-            vim.cmd.NvimTreeToggle()
-          end,
-          description = "Toggle Nvim Tree"
-        },
-        {
           "<leader>f<space>", function()
             vim.cmd.NvimTreeFindFile()
           end,
@@ -158,103 +117,26 @@ return {
         },
 
         ---- LSP ----
-        {
-          "]d", function()
-            vim.diagnostic.goto_next()
-          end,
-          description = "[LSP] Next Diagnostic"
-        },
-        {
-          "[d", function()
-            vim.diagnostic.goto_prev()
-          end,
-          description = "[LSP] Previous Diagnostic"
-        },
-        {
-          "<leader>fd", function()
-            vim.lsp.buf.definition()
-            vim.cmd("norm zz")
-          end,
-          description = "[LSP] [F]ind [D]efinition"
-        },
-        {
-          "<leader>fr", function()
-            vim.lsp.buf.references()
-          end,
-          description = "[LSP] [F]ind [R]eferences"
-        },
-        {
-          "<leader>vd", function()
-            vim.diagnostic.open_float()
-          end,
-          description = "[LSP] [V]iew [D]iagnostic"
-        },
-        {
-          "<leader>rs", function()
-            vim.lsp.buf.rename()
-          end,
-          description = "[LSP] [R]ename [S]ymbol"
-        },
-        {
-          "<leader>hi", function()
-            vim.lsp.buf.hover()
-          end,
-          description = "[LSP] [H]over [I]nformation"
-        },
-        {
-          "<F4>", description = "[LSP] Select Code Action"
-        },
-        {
-          "gd", function()
-            vim.lsp.buf.definition()
-            vim.cmd("norm zz")
-          end,
-          description = "[LSP] [g]o to [d]efinition"
-        },
-        {
-          "gD", function()
-            vim.lsp.buf.declaration()
-            vim.cmd("norm zz")
-          end,
-          description = "[LSP] [g]o to [d]efinition"
-        },
-        {
-          "gi", function()
-            vim.lsp.buf.implementation()
-            vim.cmd("norm zz")
-          end,
-          description = "[LSP] [g]o to [i]mplementation"
-        },
-        {
-          "go", function()
-            vim.lsp.buf.type_definition()
-            vim.cmd("norm zz")
-          end,
-          description = "[LSP] [g]o to ... type definition"
-        },
-        {
-          "gr", function()
-            vim.lsp.buf.references()
-          end,
-          description = "[LSP] [g]o to [r]eferences"
-        },
+        -- Defined in lsp.lua
+        {"]d", description = "[LSP] Next Diagnostic"},
+        {"[d", description = "[LSP] Previous Diagnostic"},
+        {"<leader>vd", description = "[LSP] [V]iew [D]iagnostic"},
+        {"<leader>rs", description = "[LSP] [R]ename [S]ymbol"},
+        {"<leader>hi", description = "[LSP] [H]over [I]nformation"},
+        {"<F4>", description = "[LSP] Select Code Action"},
+        {"gd", description = "[LSP] [g]o to [d]efinition"},
+        {"gD", description = "[LSP] [g]o to [d]eclaration"},
+        {"gi", description = "[LSP] [g]o to [i]mplementation"},
+        {"go", description = "[LSP] [g]o to ... type definition"},
+        {"gr", description = "[LSP] [g]o to [r]eferences"},
+        {"gf", description = "[LSP] [g]o [f]ormat file"},
 
-        ---- GIT SIGNS -----
-        {
-          "<leader>ga", function()
-            vim.cmd.Gitsigns("stage_hunk")
-          end,
-          mode = { "n", "v" },
-          description = "[Git signs] [G]it [A]dd"
-        },
-        {
-          "<leader>gp", function()
-            vim.cmd.Gitsigns("preview_hunk")
-          end,
-          description = "[Git signs] [G]it [P]review"
-        },
+        ---- GIT SIGNS ----
+        -- Defined in gitsigns.lua
         {"]c", description = "Next hunk"},
         {"[c", description = "Previous hunk"},
+        {"<leader>ga", description = "[Git signs] [G]it [A]dd"},
+        {"<leader>gp", description = "[Git signs] [G]it [P]review"},
       }
     })
   end,
